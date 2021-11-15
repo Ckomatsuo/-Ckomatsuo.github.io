@@ -1,0 +1,92 @@
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: Rule
+log-level: silent
+
+proxies:
+  - name: 广东移动
+    type: ss
+    server: ycy.gzhpxb.com
+    port: 49101
+    cipher: aes-128-gcm
+    password: yangchaoyue
+    udp: true
+    skip-cert-verify: true
+
+  - name: 解锁
+    type: ss
+    server: infinity.zemin.life
+    port: 51490
+    cipher: aes-128-gcm
+    password: yangchaoyue
+    udp: true
+    skip-cert-verify: true
+
+proxy-groups:
+  - name: 影音解锁
+    type: select
+    proxies:
+       - 广东移动
+       - DIRECT
+
+  - name: 成人内容
+    type: select
+    proxies:
+       - DIRECT
+       - 解锁
+       
+rules:
+  - DOMAIN-SUFFIX,cache.video.iqiyi.com,影音解锁
+  - DOMAIN-SUFFIX,l.qq.com,REJECT
+  - DOMAIN-SUFFIX,btrace.video.qq.com,REJECT
+  - DOMAIN-SUFFIX,rpt.gdt.qq.com,REJECT
+  - DOMAIN-SUFFIX,pingtas.qq.com,REJECT
+  - DOMAIN-SUFFIX,video.qq.com,影音解锁
+  - DOMAIN-SUFFIX,trace.qq.com,REJECT
+  - DOMAIN-SUFFIX,api.bilibili.com,影音解锁
+  - DOMAIN-SUFFIX,www.bilibili.com,影音解锁
+  - DOMAIN-SUFFIX,api.mgtv.com,影音解锁
+  - DOMAIN-SUFFIX,music.163.com,影音解锁
+  - DOMAIN-SUFFIX,y.qq.com,影音解锁
+  - DOMAIN-SUFFIX,gateway.kugou.com,影音解锁
+  - DOMAIN-SUFFIX,mips.kugou.com,影音解锁
+  - DOMAIN-SUFFIX,complexsearch.kugou.com,影音解锁
+  - DOMAIN-SUFFIX,ip.kugou.com,影音解锁
+  - DOMAIN-SUFFIX,pornhub.com,成人内容
+  - DOMAIN-SUFFIX,phncdn.com,成人内容
+  - DOMAIN-SUFFIX,xvideos.com,成人内容
+  - DOMAIN-SUFFIX,xvideos-cdn.com,成人内容
+  - DOMAIN-SUFFIX,jable.tv,成人内容
+  - DOMAIN-SUFFIX,theporndude.com,成人内容
+  - DOMAIN-SUFFIX,av01.tv,成人内容
+  - DOMAIN-SUFFIX,papalah.com,成人内容
+  - DOMAIN-SUFFIX,theav.xyz,成人内容
+  - DOMAIN-SUFFIX,firebaselogging-pa.googleapis.com,REJECT
+  - DOMAIN-SUFFIX,google-analytics.com,REJECT
+  - DOMAIN-SUFFIX,googlesyndication.com,REJECT
+  - DOMAIN-SUFFIX,doubleclick.net,REJECT
+  - DOMAIN-KEYWORD,adsystem,REJECT
+  - DOMAIN-SUFFIX,criteo.com,REJECT
+  - DOMAIN-SUFFIX,taboola.com,REJECT
+  - DOMAIN-SUFFIX,bttrack.com,REJECT
+  - DOMAIN-SUFFIX,onaudience.com,REJECT
+  - DOMAIN-SUFFIX,smartadserver.com,REJECT
+  - DOMAIN-SUFFIX,bidswitch.net,REJECT
+  - DOMAIN-SUFFIX,mfadsrvr.com,REJECT
+  - DOMAIN-SUFFIX,parsely.com,REJECT
+  - DOMAIN-SUFFIX,adnxs.com,REJECT
+  - DOMAIN-SUFFIX,addthis.com,REJECT
+  - DOMAIN-KEYWORD,advertising,REJECT
+  - DOMAIN-SUFFIX,irs01.com,REJECT
+  - DOMAIN-SUFFIX,zhihu-web-analytics.zhihu.com,REJECT
+  - DOMAIN-SUFFIX,hm.baidu.com,REJECT
+  - DOMAIN-SUFFIX,zz.bdstatic.com,REJECT
+  - DOMAIN-SUFFIX,beacon.tingyun.com,REJECT
+  - DOMAIN-SUFFIX,sb.scorecardresearch.com,REJECT
+  - DOMAIN-SUFFIX,liadm.com,REJECT
+  - DOMAIN-SUFFIX,agkn.com,REJECT
+  - DOMAIN-KEYWORD,adservice,REJECT
+  - DOMAIN-KEYWORD,beacon,REJECT
+  - IP-CIDR,47.91.203.0/24,影音解锁
+  - MATCH,DIRECT
