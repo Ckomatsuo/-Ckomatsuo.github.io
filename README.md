@@ -1,4 +1,4 @@
-![Visitor's Count](https://profile-counter.glitch.me/Ckomatsuo/count.svg)
+![Visitor's Count](https://profile-counter.glitch.me/Ckomatsuo_ckomatsuo.github.io/count.svg)
 ### Hi there 👋
 
 <!--
