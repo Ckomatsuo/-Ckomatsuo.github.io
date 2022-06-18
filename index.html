@@ -534,7 +534,109 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 </script>
 </div>
 <!-- 注释:HTML5浮窗音乐播放器代码如下 -->
+
+<script>
+    //$('#script_code').val('<script src="' + (document.location.protocol === "http:" ? "http" : "https") + '://' + document.location.host + '/api/player/demo" id="myhk" key="demo" m="1"><\/script>');
+    $('#script_code').val('<script src="https://myhkw.cn/api/player/demo" id="myhk" key="demo" skin="player" lr="l" m="1"><\/script>');
+    var myhkad = localStorage.getItem("myhkad2022618");
+    myhkad = typeof myhkad === "undefined" ? false : myhkad === "true";
+    layui.use(['carousel','element', 'layer'], function(){
+        var element = layui.element;
+        var layer = layui.layer;
+        var carousel = layui.carousel;
+        //图片轮播
+        carousel.render({
+            elem: '#playerimg'
+            ,width: '100%'
+            ,height: '500px'
+            ,anim: 'fade'
+            ,indicator:'none'
+            ,interval: 3000
+        });
+          if (!myhkad) {
+		  setTimeout(function(){
+              layer.open({
+                  type: 1
+                  ,
+                  area: '280px;'
+                  ,
+                  shade: 0.8
+                  ,
+                  //closeBtn: 0,
+                  id: 'LAY_layuipro1' //设定一个id，防止重复弹出
+                  ,
+                  btn: ['不再提示']
+                  ,
+                  btnAlign: 'c'
+                  ,
+                  shadeClose: true
+                  ,
+                  moveType: 1 //拖拽模式，0或者1
+                  ,
+                  title: '<i class="fa fa-bullhorn"></i> 618年中·限时优惠'
+                  ,
+                  content: '<div style="padding:15px;background-color:#393D49;color:#fff"><b style="color:#f00">618年中·限时优惠</b><br><b style="color:#ff0">活动期间每日登录抽取随机下单折扣</b><br><b style="color:#f0f">后台下单即可享受折扣立减金额</b><br><b style="color:#0f0">仅当日下单有效，次日可重新随机</b><br>活动时间：6月8日至6月30日</div>'
+                  ,
+                  yes: function (index, layero) {
+                      layer.closeAll();
+                      localStorage.setItem("myhkad2022618", "true");
+                  }
+              });
+			}, 2000);
+          }
+        //触发事件
+        var active = {
+            update: function () {
+                    //示范一个公告层
+                    layer.open({
+                        type: 1
+                        ,
+                        area: '300px;'
+                        ,
+                        shade: 0.8
+                        ,
+                        closeBtn: 0
+                        ,
+                        id: 'LAY_layuipro2' //设定一个id，防止重复弹出
+                        ,
+                        btn: ['我知道了']
+                        ,
+                        btnAlign: 'c'
+                        ,
+                        shadeClose: true
+                        ,
+                        moveType: 1 //拖拽模式，0或者1
+                        ,
+                        title: '<i class="fa fa-bullhorn"></i> 最新版本：20220227'
+                        ,
+                        content: '<div style="padding:15px;background-color:#393D49;color:#fff">新增：控制台歌单广场，随机展示用户歌单可试听使用</br>新增：控制台签到中心，可完成每日/月/单次任务奖励</br>修复：播放器插件在某些情况下无法更新缓存最新歌单</br>修复：播放器插件在某些网站无法正常显示颜色</br>修复：控制台部分操作导致右下角客服窗口消失</br>修复：控制台广告链接部分用户访问报错</br>优化：控制台支付和订单系统</br>优化：控制台幸运红包系统金币固定改为随机</br>优化：控制台歌单使用到播放器非本人歌单自动创建</br>优化：控制台部分页面显示</br>优化：播放器插件在某些网站下的兼容性</br>备注：本次更新用户无需特殊操作，云端更新</br></div>'
+                        ,
+                        yes: function (index, layero) {
+                            layer.closeAll();
+                        }
+                    });
+            }
+        };
+        $('.btns-row .btn').on('click', function () {
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
+        var loadfuck = 0;
+        function load(){
+            if(loadfuck < 100){
+            $.post("/index/index/load", {id: '',}, function (data) {
+                if (data.code === 1) {
+                    $("#play").html(data.msg.play);
+                    $("#login").html(data.msg.login);
+                }
+            });
+            loadfuck++;
+            }
+        }
+        loads=setInterval(load,5500);
+    });
     </script>
+
 <script src="https://myhkw.cn/api/player/demo" id="myhk" key="demo" op="0" au="0" sg="0"></script>
 </body>
 </html>
