@@ -93,11 +93,3 @@ body > div {
 .dark #changeTheme:active {
     background: rgba(255, 255, 255, .16);
 }
-#shangxia{position:fixed;top:45%;right:45%;display:block;margin-right:-508px; z-index:999;}
-#shang,#comt,#xia{background:url(images/huadong.png) no-repeat;position:relative;cursor:pointer;height:25px;width:29px;margin:10px 0 0;}
-#comt{background-position:left -30px;height:32px;}
-#xia{background-position:left -68px;}
-#comt:hover{background-position:right -30px;}
-#shang:hover{background-position:right top;}
-#xia:hover{background-position:right -68px ;}
-#myrss {background:url(images/rss.png) no-repeat;height:120px;width:120px;margin:20px 0 0 -60px;position:relative;cursor:pointer;}
